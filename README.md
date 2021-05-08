@@ -1,7 +1,6 @@
 # Experimenting with Raspberry Pi4 and Project25
 
-Table of Contents
-=================
+## Table of Contents
 
 * [Experimenting with Raspberry Pi4 and Project25](#experimenting-with-raspberry-pi4-and-project25)
   * [Get an RPi 4](#get-an-rpi-4)
