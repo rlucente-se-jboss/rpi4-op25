@@ -46,3 +46,40 @@ Once the device boots up and everything is correctly connected, a
 login prompt will appear. Log in with username `pi` and password
 `raspberry`. We'll most certainly change those credentials later.
 
+Run the following command to configure the RPi.
+
+    sudo raspi-config
+
+### Configure locales
+The Raspberry Pi Software Configuration Tool text interface will
+be displayed. Let's start with `5 Localisation Options`. Select
+that and hit `ENTER`. Next, select `L1 Locale` and hit `ENTER`.
+You'll see a long list of locales in `Configuring locales` dialog.
+Scroll through that and use the `SPACE` to only select the locale(s)
+for your region. On my system, I de-selected `en_GB.UTF-8 UTF-8`
+and then selected `en_US.UTF-8 UTF-8` using `SPACE` for both. When
+you're finished, `TAB` to `Ok` and press `ENTER`. Since you're
+setting one locale for the RPi4, you'll be asked to confirm the
+default language for the system. I select `en_US.UTF-8` and then
+`Ok` and `ENTER`.
+
+### Wireless LAN
+At the main configuration screen, select `1 System Options` and
+then `S1 Wireless LAN`. Scroll through to select your country and
+then `Ok` and `ENTER`. I chose `US United States`. Confirm your
+country by pressing `ENTER`. Next, enter the `SSID` for your wireless
+network followed by the passphrase. After each, simply select `Ok`
+and `ENTER`.
+
+### Update Password
+At the main configuration screen, select `1 System Options` and
+then `S3 Password`. Provide a new password when prompted and hit
+`ENTER` through the various confirmation dialogs to get back to the
+main menu.
+
+### Network at Boot
+At the main configuration screen, select `1 System Options` and
+then `S6 Network at Boot`. Choose `Yes` then `ENTER` to ensure the
+network connection is available after boot up. Confirm the choice
+to get back to the main menu.
+
