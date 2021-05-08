@@ -46,22 +46,34 @@ Once the device boots up and everything is correctly connected, a
 login prompt will appear. Log in with username `pi` and password
 `raspberry`. We'll most certainly change those credentials later.
 
-Run the following command to configure the RPi.
+Run the following command to configure the RPi:
 
     sudo raspi-config
 
-### Configure locales
+### Locales
 The Raspberry Pi Software Configuration Tool text interface will
 be displayed. Let's start with `5 Localisation Options`. Select
 that and hit `ENTER`. Next, select `L1 Locale` and hit `ENTER`.
-You'll see a long list of locales in `Configuring locales` dialog.
-Scroll through that and use the `SPACE` to only select the locale(s)
-for your region. On my system, I de-selected `en_GB.UTF-8 UTF-8`
-and then selected `en_US.UTF-8 UTF-8` using `SPACE` for both. When
-you're finished, `TAB` to `Ok` and press `ENTER`. Since you're
+You'll see a long list of locales in the `Configuring locales`
+dialog.  Scroll through that and use the `SPACE` to only select the
+locale(s) for your region. On my system, I de-selected `en_GB.UTF-8
+UTF-8` and then selected `en_US.UTF-8 UTF-8` using `SPACE` for both.
+When you're finished, `TAB` to `Ok` and press `ENTER`. Since you're
 setting one locale for the RPi4, you'll be asked to confirm the
-default language for the system. I select `en_US.UTF-8` and then
+default language for the system. I selected `en_US.UTF-8` and then
 `Ok` and `ENTER`.
+
+At the main configuration screen, select `5 Localisation Options`
+and then `L2 Timezone`. Scroll through to select your geographic
+area and then `Ok` and `ENTER`. Next, scroll to select the timezone
+for your geographic area followed by `Ok` and `ENTER`.
+
+At the main configuration screen, select `5 Localisation Options`
+and then `L3 Keyboard`. On my system, I selected `Generic 104-key
+PC` then `Ok`. For keyboard layout on the next dialog, I chose
+`English (US)` and then `Ok`. I then selected the defaults for the
+next two dialogs. You'll need to tailor this to your specific
+keyboard.
 
 ### Wireless LAN
 At the main configuration screen, select `1 System Options` and
@@ -82,4 +94,55 @@ At the main configuration screen, select `1 System Options` and
 then `S6 Network at Boot`. Choose `Yes` then `ENTER` to ensure the
 network connection is available after boot up. Confirm the choice
 to get back to the main menu.
+
+### Reboot the RPi4
+Let's reboot the RPi4 to make sure locales are fully updated before
+adding packages for VNC later. Fully exit the configuration tool
+and, if not prompted to reboot, type the following command at the
+prompt:
+
+    sudo reboot
+
+### Update `raspi-config`
+After the system has restarted, login with username `pi` and the
+updated password and then re-run the configuration tool using:
+
+    sudo raspi-config
+
+At the main configuration screen, select `8 Update`. The configuration
+tool will automatically restart after pulling and installing necessary
+updates.
+
+### SSH and VNC
+At the main configuration screen, select `3 Interface Options` and
+then `P2 SSH`. Choose `Yes` then `ENTER` to enable the SSH server.
+Confirm the choice to get back to the main menu.
+
+At the main configuration screen, select `3 Interface Options` and
+then `P3 VNC`. Choose `Yes` then `ENTER` to enable the VNC server.
+Reply `Y` to the prompt to install the packages. Confirm the choice
+to get back to the main menu.
+
+Select `Finish` and `ENTER` to exit the configuration tool.
+
+### Update all packages
+Issue the following commands to fully update and upgrade all the
+packages:
+
+    sudo apt update
+    sudo apt full-upgrade
+
+When prompted, confirm the upgrade. When the upgrades complete,
+issue the following command to determine the IP address of the
+device:
+
+    ip route get 8.8.8.8 | awk '{print $7}'
+
+To poweroff, issue the command:
+
+    sudo poweroff
+
+When the RPi4 is shutdown, disconnect the keyboard and monitor.
+From this point on, we'll be using SSH and VNC to work with the
+RPi4.
 
