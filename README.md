@@ -1,4 +1,4 @@
-# Raspberry Pi4 Project25 Experiment
+# Experimenting with Raspberry Pi4 and Project25
 
 ## Get an RPi 4
 To make experimentation easier, I purchased a [Canakit Raspberry Pi 4 Starter Kit](https://www.canakit.com/raspberry-pi-4-starter-kit.html)
