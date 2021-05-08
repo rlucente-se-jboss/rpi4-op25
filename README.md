@@ -15,7 +15,6 @@ Table of Contents
     * [Update raspi\-config](#update-raspi-config)
     * [SSH and VNC](#ssh-and-vnc)
     * [Update all packages](#update-all-packages)
-* [Table of Contents](#table-of-contents)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
