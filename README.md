@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [Experimenting with Raspberry Pi4 and Project25](#experimenting-with-raspberry-pi4-and-project25)
+  * [Table of Contents](#table-of-contents)
   * [Get an RPi 4](#get-an-rpi-4)
   * [Install Raspberry Pi OS](#install-raspberry-pi-os)
   * [Configure the RPi 4](#configure-the-rpi-4)
@@ -11,8 +12,10 @@
     * [Update Password](#update-password)
     * [Network at Boot](#network-at-boot)
     * [Reboot the RPi4](#reboot-the-rpi4)
+    * [Enable headless VNC desktop](#enable-headless-vnc-desktop)
     * [Update raspi\-config](#update-raspi-config)
-    * [SSH and VNC](#ssh-and-vnc)
+    * [SSH](#ssh)
+    * [VNC](#vnc)
     * [Update all packages](#update-all-packages)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
@@ -136,11 +139,12 @@ At the main configuration screen, select `8 Update`. The configuration
 tool will automatically restart after pulling and installing necessary
 updates.
 
-### SSH and VNC
+### SSH
 At the main configuration screen, select `3 Interface Options` and
 then `P2 SSH`. Choose `Yes` then `ENTER` to enable the SSH server.
 Confirm the choice to get back to the main menu.
 
+### VNC
 At the main configuration screen, select `3 Interface Options` and
 then `P3 VNC`. Choose `Yes` then `ENTER` to enable the VNC server.
 Reply `Y` to the prompt to install the packages. Confirm the choice
