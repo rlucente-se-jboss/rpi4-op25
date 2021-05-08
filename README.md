@@ -120,9 +120,15 @@ prompt:
 
     sudo reboot
 
-### Update raspi-config
+### Enable headless VNC desktop
 After the system has restarted, login with username `pi` and the
-updated password and then re-run the configuration tool using:
+updated password and then issue the following command to install
+packages that we'll need later for remote VNC access:
+
+    sudo apt install lightdm lxsession
+
+### Update raspi-config
+Re-run the configuration tool using:
 
     sudo raspi-config
 
@@ -140,7 +146,25 @@ then `P3 VNC`. Choose `Yes` then `ENTER` to enable the VNC server.
 Reply `Y` to the prompt to install the packages. Confirm the choice
 to get back to the main menu.
 
+At the main configuration screen, select `2 Display Options` and
+then `D1 Resolution`. Choose your desired resolution and then select
+`Ok` and `ENTER`. Select `Ok` again to confirm and return to the
+main menu.
+
+At the main configuration screen, select `1 System Options` and
+then `S5 Boot / Auto Login`. Choose `B4 Desktop Autologin` and then
+`Ok` and `ENTER`.
+
 Select `Finish` and `ENTER` to exit the configuration tool.
+
+Type the following command to set the VNC password for the RPi:
+
+    sudo vncpasswd -service
+
+Provide a password when prompted. Next, create a custom config file
+to set VNC authentication:
+
+    echo "Authentication=VncAuth" | sudo tee /etc/vnc/config.d/common.custom
 
 ### Update all packages
 Issue the following commands to fully update and upgrade all the
