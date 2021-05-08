@@ -3,16 +3,16 @@
 ## Get an RPi 4
 To make experimentation easier, I purchased a [Canakit Raspberry Pi 4 Starter Kit](https://www.canakit.com/raspberry-pi-4-starter-kit.html)
 with 8GB RAM, 32 GB MicroSD card, heat sinks, fan, case, HDMI cable,
-power supply, and MicroSD USB Reader.  I followed a simple [online
-tutorial](https://youtu.be/7rcNjgVgc-I) to set all this up.
+power supply, and MicroSD USB Reader.  I followed a simple [online tutorial](https://youtu.be/7rcNjgVgc-I)
+to set all this up.
 
-## Install RPi 4
+## Install Raspberry Pi OS
 Get the latest Raspberry Pi operating system from  the [Raspberry Pi website](https://www.raspberrypi.org/software/operating-systems/).
 For this project, I used the [latest Raspberry Pi OS Lite](https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip) release.
 
-Determine the device matching your SD card. After inserting the SD
-card into the Canakit included MicroSD USB reader and then plugging
-that into my MacBook, I ran the following commands on  OSX:
+After inserting the SD card into the Canakit included MicroSD USB
+reader and then plugging that into my MacBook, I ran the following
+commands on OSX:
 
     cd ~/Downloads
     unzip 2021-03-04-raspios-buster-armhf-lite.zip
@@ -20,7 +20,7 @@ that into my MacBook, I ran the following commands on  OSX:
 
 The 32 GB MicroSD card shows up as `/dev/disk2` but your mileage
 may vary. Make sure to identify the correct device. Write the image
-to the SD card:
+to the SD card using the following commands:
 
     diskutil unmountDisk /dev/disk2
     sudo dd if=2021-03-04-raspios-buster-armhf-lite.zip of=/dev/rdisk2 bs=1m
@@ -44,7 +44,7 @@ and an HDMI monitor, and power the device.
 ## Configure the RPi 4
 Once the device boots up and everything is correctly connected, a
 login prompt will appear. Log in with username `pi` and password
-`raspberry`. We'll most certainly change those credentials later.
+`raspberry`. We'll change the password later.
 
 Run the following command to configure the RPi:
 
@@ -103,7 +103,7 @@ prompt:
 
     sudo reboot
 
-### Update `raspi-config`
+### Update raspi-config
 After the system has restarted, login with username `pi` and the
 updated password and then re-run the configuration tool using:
 
