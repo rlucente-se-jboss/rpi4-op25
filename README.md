@@ -1,5 +1,24 @@
 # Experimenting with Raspberry Pi4 and Project25
 
+Table of Contents
+=================
+
+* [Experimenting with Raspberry Pi4 and Project25](#experimenting-with-raspberry-pi4-and-project25)
+  * [Get an RPi 4](#get-an-rpi-4)
+  * [Install Raspberry Pi OS](#install-raspberry-pi-os)
+  * [Configure the RPi 4](#configure-the-rpi-4)
+    * [Locales](#locales)
+    * [Wireless LAN](#wireless-lan)
+    * [Update Password](#update-password)
+    * [Network at Boot](#network-at-boot)
+    * [Reboot the RPi4](#reboot-the-rpi4)
+    * [Update raspi\-config](#update-raspi-config)
+    * [SSH and VNC](#ssh-and-vnc)
+    * [Update all packages](#update-all-packages)
+* [Table of Contents](#table-of-contents)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
+
 ## Get an RPi 4
 To make experimentation easier, I purchased a [Canakit Raspberry Pi 4 Starter Kit](https://www.canakit.com/raspberry-pi-4-starter-kit.html)
 with 8GB RAM, 32 GB MicroSD card, heat sinks, fan, case, HDMI cable,
