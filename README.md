@@ -28,22 +28,23 @@ to set all this up.
 
 ## Install Raspberry Pi OS
 Get the latest Raspberry Pi operating system from  the [Raspberry Pi website](https://www.raspberrypi.org/software/operating-systems/).
-For this project, I used the [latest Raspberry Pi OS Lite](https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip) release.
+For this project, I used the [latest Raspberry Pi OS with desktop](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-03-25/2021-03-04-raspios-buster-armhf.zip)
+release.
 
 After inserting the SD card into the Canakit included MicroSD USB
 reader and then plugging that into my MacBook, I ran the following
 commands on OSX:
 
     cd ~/Downloads
-    unzip 2021-03-04-raspios-buster-armhf-lite.zip
+    unzip -q 2021-03-04-raspios-buster-armhf.zip
     diskutil list
 
-The 32 GB MicroSD card shows up as `/dev/disk2` but your mileage
-may vary. Make sure to identify the correct device. Write the image
-to the SD card using the following commands:
+The 32 GB MicroSD card appears on my system as `/dev/disk2` but
+your mileage may vary. Make sure to identify the correct device.
+Write the image to the SD card using the following commands:
 
     diskutil unmountDisk /dev/disk2
-    sudo dd if=2021-03-04-raspios-buster-armhf-lite.img of=/dev/rdisk2 bs=1m
+    sudo dd if=2021-03-04-raspios-buster-armhf.img of=/dev/rdisk2 bs=1m
 
 Notice the `/dev/rdisk2` vs `/dev/disk2` which can significantly
 speed up writes on OSX. From `man hdiutil` on OSX,
@@ -58,132 +59,59 @@ When the command completes, eject the SD Card:
 
     diskutil eject /dev/disk2
 
-Plug the SD Card into the Raspberry Pi 4, connect a USB keyboard
-and an HDMI monitor, and power the device.
+Plug the SD Card into the Raspberry Pi 4, connect a USB keyboard,
+mouse, and an HDMI monitor, and power the device.
 
 ## Configure the RPi 4
-Once the device boots up and everything is correctly connected, a
-login prompt will appear. Log in with username `pi` and password
-`raspberry`. We'll change the password later.
+Once the device boots up, you'll see a `Welcome to Raspberry Pi`
+dialog. Simply click `Next`.
 
-Run the following command to configure the RPi:
+Set your country, language, and timezone. I also checked the box
+`Use US keyboard`. Click `Next`.
 
-    sudo raspi-config
+Enter a password for user `pi` and then click `Next`.
 
-### Locales
-The Raspberry Pi Software Configuration Tool text interface will
-be displayed. Let's start with `5 Localisation Options`. Select
-that and hit `ENTER`. Next, select `L1 Locale` and hit `ENTER`.
-You'll see a long list of locales in the `Configuring locales`
-dialog.  Scroll through that and use the `SPACE` to only select the
-locale(s) for your region. On my system, I de-selected `en_GB.UTF-8
-UTF-8` and then selected `en_US.UTF-8 UTF-8` using `SPACE` for both.
-When you're finished, `TAB` to `Ok` and press `ENTER`. Since you're
-setting one locale for the RPi4, you'll be asked to confirm the
-default language for the system. I selected `en_US.UTF-8` and then
-`Ok` and `ENTER`.
+Check the box if your screen has a black border around it. Click
+`Next`.
 
-At the main configuration screen, select `5 Localisation Options`
-and then `L2 Timezone`. Scroll through to select your geographic
-area and then `Ok` and `ENTER`. Next, scroll to select the timezone
-for your geographic area followed by `Ok` and `ENTER`.
+Select your WiFi network from the list and click `Next` to connect.
+Enter the password for the WiFi network if prompted and click `Next`.
 
-At the main configuration screen, select `5 Localisation Options`
-and then `L3 Keyboard`. On my system, I selected `Generic 104-key
-PC` then `Ok`. For keyboard layout on the next dialog, I chose
-`English (US)` and then `Ok`. I then selected the defaults for the
-next two dialogs. You'll need to tailor this to your specific
-keyboard.
+Click `Next` to update the software. Click `OK` when notified the
+system is up to date.
 
-### Wireless LAN
-At the main configuration screen, select `1 System Options` and
-then `S1 Wireless LAN`. Scroll through to select your country and
-then `Ok` and `ENTER`. I chose `US United States`. Confirm your
-country by pressing `ENTER`. Next, enter the `SSID` for your wireless
-network followed by the passphrase. After each, simply select `Ok`
-and `ENTER`.
+Select `Restart` to reboot the RPi 4 with the new settings.
 
-### Update Password
-At the main configuration screen, select `1 System Options` and
-then `S3 Password`. Provide a new password when prompted and hit
-`ENTER` through the various confirmation dialogs to get back to the
-main menu.
+## Set SSH and VNC
+After the system restarts, click on the `Raspberry Pi` icon for the
+main menu and then select `Preferences -> Raspberry Pi Configuration`.
 
-### Network at Boot
-At the main configuration screen, select `1 System Options` and
-then `S6 Network at Boot`. Choose `Yes` then `ENTER` to ensure the
-network connection is available after boot up. Confirm the choice
-to get back to the main menu.
+The `Raspberry Pi Configuration` dialog will appear. On the `System`
+tab, select `Network at Boot: Wait for network`.
 
-### Reboot the RPi4
-Let's reboot the RPi4 to make sure locales are fully updated before
-adding packages for VNC later. Fully exit the configuration tool
-and, if not prompted to reboot, type the following command at the
-prompt:
+On the `Interfaces` tab, enable both `SSH` and `VNC`. Click `OK`.
 
-    sudo reboot
-
-### Update raspi-config
-After the system has restarted, re-run the configuration tool using:
-
-    sudo raspi-config
-
-At the main configuration screen, select `8 Update`. The configuration
-tool will automatically restart after pulling and installing necessary
-updates.
-
-### SSH
-At the main configuration screen, select `3 Interface Options` and
-then `P2 SSH`. Choose `Yes` then `ENTER` to enable the SSH server.
-Confirm the choice to get back to the main menu. Exit the configuration
-tool.
-
-### Enable headless VNC desktop
-After the system has restarted, login with username `pi` and the
-updated password and then issue the following command to install
-packages that we'll need later for remote VNC access:
-
-    sudo apt install lightdm lxsession
-
-### VNC
-Restart the configuration tool using:
-
-    sudo raspi-config
-
-At the main configuration screen, select `3 Interface Options` and
-then `P3 VNC`. Choose `Yes` then `ENTER` to enable the VNC server.
-Reply `Y` to the prompt to install the packages. Confirm the choice
-to get back to the main menu.
-
-At the main configuration screen, select `2 Display Options` and
-then `D1 Resolution`. Choose your desired resolution and then select
-`Ok` and `ENTER`. Select `Ok` again to confirm and return to the
-main menu.
-
-At the main configuration screen, select `1 System Options` and
-then `S5 Boot / Auto Login`. Choose `B4 Desktop Autologin` and then
-`Ok` and `ENTER`.
-
-Select `Finish` and `ENTER` to exit the configuration tool.
-
-Type the following command to set the VNC password for the RPi:
+Click the terminal icon on the top bar and then type the following
+command to set the VNC password for the RPi:
 
     sudo vncpasswd -service
 
 Provide a password when prompted. Next, create a custom config file
-to set VNC authentication:
+to set VNC authentication by typing the commands:
 
     echo "Authentication=VncAuth" | sudo tee /etc/vnc/config.d/common.custom
 
-### Update all packages
-Issue the following commands to fully update and upgrade all the
-packages:
+Set the screen resolution when no monitor is connected. Run the
+following command:
 
-    sudo apt update
-    sudo apt full-upgrade
+    sudo raspi-config
 
-When prompted, confirm the upgrade. When the upgrades complete,
-issue the following command to determine the IP address of the
+Select `2 Display Options` and then `D1 Resolution`. Select a desired
+screen resolution that will be in effect for VNC and then select
+`Ok`. Select `Ok` again to confirm and then `Finish` to close the
+app. When asked to reboot, click `No`.
+
+Issue the following command to determine the IP address of the
 device:
 
     ip route get 8.8.8.8 | awk '{print $7}'
@@ -192,7 +120,48 @@ To poweroff, issue the command:
 
     sudo poweroff
 
-When the RPi4 is shutdown, disconnect the keyboard and monitor.
+When the RPi4 is shutdown, disconnect the keyboard, mouse, and
+monitor. Also, disconnect the power cable to power down the device.
 From this point on, we'll be using SSH and VNC to work with the
 RPi4.
+
+## Determine the Project 25 Primary Control Frequency
+Browse to [Radio Reference](https://www.radioreference.com) and
+click on `Reference Database`. Select your state and county on the
+map and then select the same county under `County Quick Jumps`.
+Click the link for the `Project 25 Phase I` link. Scroll down to
+`System Frequencies` and then look for the number in red with a `c`
+following it. This is the P25 primary control channel frequency in
+MHz.
+
+## Connect the RTL-SDR USB receiver
+TODO talk about antenna and receiver here
+Power on the RPi 4 with only the USB software-defined radio connected.
+
+## Confirm the control channel frequency for Project25
+First, use a VNC client to connect to the RPi 4. On OSX, open
+`Finder` and then select `Go -> Connect to Server ...`. On the
+dialog, enter `vnc://192.168.1.17`, making sure to change the IP
+address to match the IP address for your RPi 4. Enter the VNC
+password when prompted and select `Sign in`. The Desktop will appear
+for the RPi 4.
+
+After logging, select the Raspberry icon followed by `Preferences
+-> Add / Remove Software`. Enter `gqrx` in the search text field.
+When the results appear, select `Software defined radio receiver`
+then `OK`. Enter the password when prompted.
+
+After the application is installed, launch it by selecting the
+Raspberry icon and then `Internet -> gqrx`.
+
+The application will start in a few seconds. When the `Configure
+I/O Devices` dialog appears, select `Realtek RTL2838UHIDIR SN:00000001`
+in the `Device` pull-down. Click `OK` to launch the application.
+
+Enter the Project 25 primary control channel frequency (in kHz) in
+the `Frequency` text box and then click the save icon. Next, select
+`File -> Start DSP` to see the waterfall display. There should be
+a bright yellow line matching your control channel frequency. You
+can stop the waterfall display by selecting `File -> Stop DSP`.
+Exit the `gqrx` application.
 
