@@ -1,9 +1,7 @@
-# Experimenting with Raspberry Pi4 and Project25
-
-## Table of Contents
+Table of Contents
+=================
 
 * [Experimenting with Raspberry Pi4 and Project25](#experimenting-with-raspberry-pi4-and-project25)
-  * [Table of Contents](#table-of-contents)
   * [Get an RPi 4](#get-an-rpi-4)
   * [Install Raspberry Pi OS](#install-raspberry-pi-os)
   * [Configure the RPi 4](#configure-the-rpi-4)
@@ -12,13 +10,15 @@
     * [Update Password](#update-password)
     * [Network at Boot](#network-at-boot)
     * [Reboot the RPi4](#reboot-the-rpi4)
-    * [Enable headless VNC desktop](#enable-headless-vnc-desktop)
     * [Update raspi\-config](#update-raspi-config)
     * [SSH](#ssh)
+    * [Enable headless VNC desktop](#enable-headless-vnc-desktop)
     * [VNC](#vnc)
     * [Update all packages](#update-all-packages)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
+
+# Experimenting with Raspberry Pi4 and Project25
 
 ## Get an RPi 4
 To make experimentation easier, I purchased a [Canakit Raspberry Pi 4 Starter Kit](https://www.canakit.com/raspberry-pi-4-starter-kit.html)
@@ -123,13 +123,6 @@ prompt:
 
     sudo reboot
 
-### Enable headless VNC desktop
-After the system has restarted, login with username `pi` and the
-updated password and then issue the following command to install
-packages that we'll need later for remote VNC access:
-
-    sudo apt install lightdm lxsession
-
 ### Update raspi-config
 Re-run the configuration tool using:
 
@@ -143,6 +136,13 @@ updates.
 At the main configuration screen, select `3 Interface Options` and
 then `P2 SSH`. Choose `Yes` then `ENTER` to enable the SSH server.
 Confirm the choice to get back to the main menu.
+
+### Enable headless VNC desktop
+After the system has restarted, login with username `pi` and the
+updated password and then issue the following command to install
+packages that we'll need later for remote VNC access:
+
+    sudo apt install lightdm lxsession
 
 ### VNC
 At the main configuration screen, select `3 Interface Options` and
