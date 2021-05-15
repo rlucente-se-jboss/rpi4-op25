@@ -43,7 +43,7 @@ may vary. Make sure to identify the correct device. Write the image
 to the SD card using the following commands:
 
     diskutil unmountDisk /dev/disk2
-    sudo dd if=2021-03-04-raspios-buster-armhf-lite.zip of=/dev/rdisk2 bs=1m
+    sudo dd if=2021-03-04-raspios-buster-armhf-lite.img of=/dev/rdisk2 bs=1m
 
 Notice the `/dev/rdisk2` vs `/dev/disk2` which can significantly
 speed up writes on OSX. From `man hdiutil` on OSX,
