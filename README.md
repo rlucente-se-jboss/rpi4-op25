@@ -124,7 +124,7 @@ prompt:
     sudo reboot
 
 ### Update raspi-config
-Re-run the configuration tool using:
+After the system has restarted, re-run the configuration tool using:
 
     sudo raspi-config
 
@@ -135,7 +135,8 @@ updates.
 ### SSH
 At the main configuration screen, select `3 Interface Options` and
 then `P2 SSH`. Choose `Yes` then `ENTER` to enable the SSH server.
-Confirm the choice to get back to the main menu.
+Confirm the choice to get back to the main menu. Exit the configuration
+tool.
 
 ### Enable headless VNC desktop
 After the system has restarted, login with username `pi` and the
@@ -145,6 +146,10 @@ packages that we'll need later for remote VNC access:
     sudo apt install lightdm lxsession
 
 ### VNC
+Restart the configuration tool using:
+
+    sudo raspi-config
+
 At the main configuration screen, select `3 Interface Options` and
 then `P3 VNC`. Choose `Yes` then `ENTER` to enable the VNC server.
 Reply `Y` to the prompt to install the packages. Confirm the choice
