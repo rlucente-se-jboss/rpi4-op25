@@ -130,7 +130,8 @@ MHz.
 
 ## Connect the RTL-SDR USB receiver
 TODO talk about antenna and receiver here
-Power on the RPi 4 with only the USB software-defined radio connected.
+
+TODO Power on the RPi 4 with only the USB software-defined radio connected.
 
 ## Confirm the control channel frequency for Project25
 First, use a VNC client to connect to the RPi 4. On OSX, open
