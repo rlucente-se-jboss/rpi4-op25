@@ -133,7 +133,7 @@ TODO talk about antenna and receiver here
 
 TODO Power on the RPi 4 with only the USB software-defined radio connected.
 
-## Confirm the control channel frequency for Project25
+## Install the GNU Software Defined Radio Receiver
 First, use a VNC client to connect to the RPi 4. On OSX, open
 `Finder` and then select `Go -> Connect to Server ...`. On the
 dialog, enter `vnc://192.168.1.17`, making sure to change the IP
@@ -141,12 +141,33 @@ address to match the IP address for your RPi 4. Enter the VNC
 password when prompted and select `Sign in`. The Desktop will appear
 for the RPi 4.
 
-After logging, select the Raspberry icon followed by `Preferences
+After logging in, select the Raspberry icon followed by `Preferences
 -> Add / Remove Software`. Enter `gqrx` in the search text field.
 When the results appear, select `Software defined radio receiver`
 then `OK`. Enter the password when prompted.
 
-After the application is installed, launch it by selecting the
+## Confirm the RTL-SDR USB device is recognized
+Sometimes when I boot my RPi4, the RTL-SDR receiver does not appear
+to be enabled. You can confirm that the USB radio receiver is
+recognized by opening a terminal window and typing the following
+command:
+
+    lsusb
+
+The output should resemble the following:
+
+    Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+    Bus 001 Device 003: ID 0bda:2838 Realtek Semiconductor Corp. RTL2838 DVB-T
+    Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+If the `Realtek` device does not appear, poweroff the RPi4 using
+`sudo poweroff`, disconnect the power cable, reinsert the device,
+and then try again.
+
+## Confirm the control channel frequency for Project25
+With a now properly connected and recognized software-defined radio
+receiver, launch the radio receiver application by selecting the
 Raspberry icon and then `Internet -> gqrx`.
 
 The application will start in a few seconds. When the `Configure
@@ -156,7 +177,11 @@ in the `Device` pull-down. Click `OK` to launch the application.
 Enter the Project 25 primary control channel frequency (in kHz) in
 the `Frequency` text box and then click the save icon. Next, select
 `File -> Start DSP` to see the waterfall display. There should be
-a bright yellow line matching your control channel frequency. You
-can stop the waterfall display by selecting `File -> Stop DSP`.
-Exit the `gqrx` application.
+a bright yellow line matching your control channel frequency as
+shown in the image.
+
+![Gqrx Waterfall](/images/gqrx-waterfall.png)
+
+You can stop the waterfall display by selecting
+`File -> Stop DSP`.  Exit the `gqrx` application.
 
