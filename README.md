@@ -171,7 +171,8 @@ Click the link for the `Project 25 Phase I` link as shown below.
 
 ![P25 Example](/images/radio-ref-example.png)
 
-There are several parameters you will need from this page which are listed in the following table.
+There are several parameters you will need from this page which are
+listed in the following table.
 
 | Parameter | Description |
 | --- | --- |
@@ -179,12 +180,27 @@ There are several parameters you will need from this page which are listed in th
 | Primary Control Channel | The Project25 control channel frequency in MHz that carries instructions and status messages between the controller and the radios |
 | Talkgroup | An identifier in both decimal (DEC) and hexadecimal (HEX) that is assigned dynamically to a send/receive frequency pair from a reusable pool |
 
-Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK), another name for Differential Phase Shift Keying (DQPSK) with 4 bit styles: 00, 01, 10, and 11.
+Scroll down to `System ID List`. The `System ID` three digit
+hexadecimal value corresponds to the Network Access Code (NAC).
 
-Scroll down to `System ID List`. The `System ID` three hexadecimal value corresponds to the Network Access Code (NAC). 
-Scroll down to `System Frequencies` and then look for the number
-in red with a `c` following it. This is the P25 primary control
-channel frequency in MHz.
+Scroll down to `System Frequencies` and then look for the first
+number in red with a `c` following it. This is the P25 primary
+control channel frequency in MHz.
+
+Scroll down to `System Talkgroups`. The value in the first column
+is the decimal value for the talkgroup. Note the talkgroups that
+you're interested in but be aware that talkgroups with an `E` in
+the `Mode` column are encrypted and you will not be able to listen
+to them.
+
+Note the NAC, primary control channel frequency, and the desired
+talkgroups. This information will be used later to configure the
+Op25 software.
+
+Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK)
+is another name for Differential Phase Shift Keying (DQPSK) with 4
+bit styles: 00, 01, 10, and 11. This [article](https://en.wikipedia.org/wiki/Phase-shift_keying)
+dives deeper into this encoding.
 
 ## Confirm the control channel frequency for Project25
 With your properly connected and recognized software-defined radio
@@ -227,4 +243,11 @@ Clone this repository to get the configuration files and scripts using:
 
     git clone https://github.com/rlucente-se-jboss/rpi4-op25.git
 
+Launch the `LibreOffice Calc` application by selecting the raspberry
+icon and then `Office -> LibreOffice Calc`. Select `File -> Open
+...` and then navigate to the `trunk.tsv` file in the directory
+`/home/pi/rpi4-op25`. Click `Open` and then in the dialog make sure
+that tab separation is selected as shown below.
+
+![Open Tab-separated Values](/images/open-tsv-file.png)
 
