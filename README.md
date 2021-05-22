@@ -121,35 +121,28 @@ monitor. Also, disconnect the power cable to power down the device.
 From this point on, we'll be using SSH and VNC to work with the
 RPi4.
 
-## Determine the Project 25 Primary Control Frequency
-Browse to [Radio Reference](https://www.radioreference.com) and
-click on `Reference Database`. Select your state and county on the
-map and then select the same county under `County Quick Jumps`.
-Click the link for the `Project 25 Phase I` link as shown below.
-
-![P25 Example](/images/radio-ref-example.png)
-
-Scroll down to `System Frequencies` and then look for the number
-in red with a `c` following it. This is the P25 primary control
-channel frequency in MHz.
-
-## Connect the RTL-SDR USB receiver
-TODO talk about antenna and receiver here
-
-TODO Power on the RPi 4 with only the USB software-defined radio connected.
-
 ## Install the GNU Software Defined Radio Receiver
-First, use a VNC client to connect to the RPi 4. On OSX, open
-`Finder` and then select `Go -> Connect to Server ...`. On the
-dialog, enter `vnc://192.168.1.17`, making sure to change the IP
-address to match the IP address for your RPi 4. Enter the VNC
-password when prompted and select `Sign in`. The Desktop will appear
-for the RPi 4.
+Power up the RPi4. At this point there is nothing connected to the
+device except for power.  Use a VNC client to connect to the RPi
+4. On OSX, open `Finder` and then select `Go -> Connect to Server
+...`. On the dialog, enter `vnc://192.168.1.17`, making sure to
+change the IP address to match the IP address for your RPi 4. Enter
+the VNC password when prompted and select `Sign in`. The Desktop
+will appear for the RPi 4.
 
 After logging in, select the Raspberry icon followed by `Preferences
 -> Add / Remove Software`. Enter `gqrx` in the search text field.
 When the results appear, select `Software defined radio receiver`
 then `OK`. Enter the password when prompted.
+
+Once the software is installed, power down the device using:
+
+    sudo poweroff
+
+## Connect the RTL-SDR USB receiver
+TODO talk about antenna and receiver here
+
+TODO Power on the RPi 4 with only the USB software-defined radio connected.
 
 ## Confirm the RTL-SDR USB device is recognized
 Sometimes when I boot my RPi4, the RTL-SDR receiver does not appear
@@ -166,12 +159,24 @@ The output should resemble the following:
     Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
     Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
-If the `Realtek` device does not appear, poweroff the RPi4 using
-`sudo poweroff`, disconnect the power cable, reinsert the device,
-and then try again.
+If the `Realtek` device does not appear in that list, poweroff the
+RPi4 using `sudo poweroff`, disconnect the power cable, reinsert
+the device, and then try again.
+
+## Determine the Project 25 Primary Control Frequency
+Browse to [Radio Reference](https://www.radioreference.com) and
+click on `Reference Database`. Select your state and county on the
+map and then select the same county under `County Quick Jumps`.
+Click the link for the `Project 25 Phase I` link as shown below.
+
+![P25 Example](/images/radio-ref-example.png)
+
+Scroll down to `System Frequencies` and then look for the number
+in red with a `c` following it. This is the P25 primary control
+channel frequency in MHz.
 
 ## Confirm the control channel frequency for Project25
-With a now properly connected and recognized software-defined radio
+With your properly connected and recognized software-defined radio
 receiver, launch the radio receiver application by selecting the
 Raspberry icon and then `Internet -> gqrx`.
 
