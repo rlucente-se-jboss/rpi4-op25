@@ -163,7 +163,7 @@ If the `Realtek` device does not appear in that list, poweroff the
 RPi4 using `sudo poweroff`, disconnect the power cable, reinsert
 the device, and then try again.
 
-## Determine the Project 25 Primary Control Frequency
+## Determine the Project 25 Parameters
 Browse to [Radio Reference](https://www.radioreference.com) and
 click on `Reference Database`. Select your state and county on the
 map and then select the same county under `County Quick Jumps`.
@@ -171,6 +171,17 @@ Click the link for the `Project 25 Phase I` link as shown below.
 
 ![P25 Example](/images/radio-ref-example.png)
 
+There are several parameters you will need from this page which are listed in the following table.
+
+| Parameter | Description |
+| ========= | =========== |
+| Network Access Code | Three digit hexadecimal code that prefixes every packet sent (including voice packets). The radio breaks squelch when this code is received. |
+| Primary Control Channel | The Project25 control channel frequency in MHz that carries instructions and status messages between the controller and the radios |
+| Talkgroup | An identifier in both decimal (DEC) and hexadecimal (HEX) that is assigned dynamically to a send/receive frequency pair from a reusable pool |
+
+Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK), another name for Differential Phase Shift Keying (DQPSK) with 4 bit styles: 00, 01, 10, and 11.
+
+Scroll down to `System ID List`. The `System ID` three hexadecimal value corresponds to the Network Access Code (NAC). 
 Scroll down to `System Frequencies` and then look for the number
 in red with a `c` following it. This is the P25 primary control
 channel frequency in MHz.
@@ -196,7 +207,24 @@ You can stop the waterfall display by selecting
 `File -> Stop DSP`.  Exit the `gqrx` application.
 
 ## Install LibreOffice (if not already present)
-Install the LibreOffice application by selecting the
-Raspberry icon and then `Preferences -> Recommended Software`. When the dialog appears, select `Office` on the left-hand side and then check the box for `LibreOffice` on the right hand side. Click `Apply` to install the software.
+Install the LibreOffice application by selecting the raspberry icon
+and then `Preferences -> Recommended Software`. When the dialog
+appears, select `Office` on the left-hand side and then check the
+box for `LibreOffice` on the right hand side. Click `Apply` to
+install the software. Click `Close` when the software is installed.
 
 ![Install LibreOffice](/images/install-libreoffice.png)
+
+## Install the OP25 software
+Click the terminal icon at the top of the RPi desktop. Install OP25 using:
+
+    git clone https://github.com/boatbod/op25.git
+    cd op25
+    ./install.sh
+
+## Configure OP25 trunk file and talkgroups
+Clone this repository to get the configuration files and scripts using:
+
+    git clone https://github.com/rlucente-se-jboss/rpi4-op25.git
+
+

@@ -3,6 +3,8 @@
 HOSTIP=$(ip route get 8.8.8.8 | sed 's/..*src //g' | awk '{print $1; exit}')
 PORT=8080
 
+cp trunk.tsv fcso.tsv $HOME/op25/op25/gr-op25_repeater/apps
+
 cd /home/pi/op25/op25/gr-op25_repeater/apps
 
 #
