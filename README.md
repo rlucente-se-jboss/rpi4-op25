@@ -195,3 +195,8 @@ shown in the image.
 You can stop the waterfall display by selecting
 `File -> Stop DSP`.  Exit the `gqrx` application.
 
+## Install LibreOffice (if not already present)
+Install the LibreOffice application by selecting the
+Raspberry icon and then `Preferences -> Recommended Software`. When the dialog appears, select `Office` on the left-hand side and then check the box for `LibreOffice` on the right hand side. Click `Apply` to install the software.
+
+![Install LibreOffice](/images/install-libreoffice.png)
