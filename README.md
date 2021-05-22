@@ -123,10 +123,13 @@ RPi4.
 Browse to [Radio Reference](https://www.radioreference.com) and
 click on `Reference Database`. Select your state and county on the
 map and then select the same county under `County Quick Jumps`.
-Click the link for the `Project 25 Phase I` link. Scroll down to
-`System Frequencies` and then look for the number in red with a `c`
-following it. This is the P25 primary control channel frequency in
-MHz.
+Click the link for the `Project 25 Phase I` link as shown below.
+
+![P25 Example](/images/radio-ref-example.png)
+
+Scroll down to `System Frequencies` and then look for the number
+in red with a `c` following it. This is the P25 primary control
+channel frequency in MHz.
 
 ## Connect the RTL-SDR USB receiver
 TODO talk about antenna and receiver here
