@@ -8,6 +8,8 @@ Table of Contents
   * [Set SSH and VNC](#set-ssh-and-vnc)
   * [Determine the Project 25 Primary Control Frequency](#determine-the-project-25-primary-control-frequency)
   * [Connect the RTL\-SDR USB receiver](#connect-the-rtl-sdr-usb-receiver)
+  * [Install the GNU Software Defined Radio Receiver](#install-the-gnu-software-defined-radio-receiver)
+  * [Confirm the RTL\-SDR USB device is recognized](#confirm-the-rtl-sdr-usb-device-is-recognized)
   * [Confirm the control channel frequency for Project25](#confirm-the-control-channel-frequency-for-project25)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
