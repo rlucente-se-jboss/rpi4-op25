@@ -174,7 +174,7 @@ Click the link for the `Project 25 Phase I` link as shown below.
 There are several parameters you will need from this page which are listed in the following table.
 
 | Parameter | Description |
-| ========= | =========== |
+| --- | --- |
 | Network Access Code | Three digit hexadecimal code that prefixes every packet sent (including voice packets). The radio breaks squelch when this code is received. |
 | Primary Control Channel | The Project25 control channel frequency in MHz that carries instructions and status messages between the controller and the radios |
 | Talkgroup | An identifier in both decimal (DEC) and hexadecimal (HEX) that is assigned dynamically to a send/receive frequency pair from a reusable pool |
