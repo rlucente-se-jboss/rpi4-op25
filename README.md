@@ -197,11 +197,6 @@ Note the NAC, primary control channel frequency, and the desired
 talkgroups. This information will be used later to configure the
 Op25 software.
 
-Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK)
-is another name for Differential Phase Shift Keying (DQPSK) with 4
-bit styles: 00, 01, 10, and 11. This [article](https://en.wikipedia.org/wiki/Phase-shift_keying)
-dives deeper into this encoding.
-
 ## Confirm the control channel frequency for Project25
 With your properly connected and recognized software-defined radio
 receiver, launch the radio receiver application by selecting the
@@ -250,4 +245,32 @@ icon and then `Office -> LibreOffice Calc`. Select `File -> Open
 that tab separation is selected as shown below.
 
 ![Open Tab-separated Values](/images/open-tsv-file.png)
+
+This file consists of a header row and then one or more data rows.
+Enter data in row 2 according to the table below.
+
+| Column | Description |
+| --- | --- |
+| Sysname | Assign a name to the system. The default name, `fcso`, is arbitrary and it corresponds to the Frederick, MD Sheriff's office |
+| Control Channel List | The primary control channel frequency in MHz |
+| Offset | Some sort of frequency offset, but leave this at zero |
+| NAC | The three digit hexadecimal network access code preceded by `0x` |
+| Modulation | Set to `cqpsk` for Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK) is another name for Differential Phase Shift Keying (DQPSK) with 4 bit styles: 00, 01, 10, and 11. This [article](https://en.wikipedia.org/wiki/Phase-shift_keying) dives deeper into this encoding. An alternative is `c4fm` for Continuous 4 level FM. |
+| TGID Tags File | File name containing talkgroup identifiers. This is where the desired talkgroups are listed. |
+| Whitelist/BLacklist/Center Frequency | Leave blank for now. |
+
+Make the appropriate modifications for the desired Project25 system
+you'd like to listen to. Save the file using `File -> Save` and
+then choose `Use Text CSV Format` when prompted. Select `File -> Close`.
+
+Next, edit the `TGID Tags File` which in the example is named
+`fcso.tsv`. In LibreOffice, select `File -> Open ...` and then
+choose the `fcso.tsv` file. Once again confirm that the data is tab
+separated.
+
+This file simply lists the decimal value for a talkgroup in the
+first column and it's description in the second value. Add all
+talkgroups that you're interested in and then select `File -> Save`
+and make sure to choose `Use Text CSV Format` when prompted. Select
+`File -> Exit LibreOffice`.
 
