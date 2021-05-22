@@ -229,6 +229,7 @@ install the software. Click `Close` when the software is installed.
 ## Install the OP25 software
 Click the terminal icon at the top of the RPi desktop. Install OP25 using:
 
+    cd ~
     git clone https://github.com/boatbod/op25.git
     cd op25
     ./install.sh
@@ -236,6 +237,7 @@ Click the terminal icon at the top of the RPi desktop. Install OP25 using:
 ## Configure OP25 trunk file and talkgroups
 Clone this repository to get the configuration files and scripts using:
 
+    cd ~
     git clone https://github.com/rlucente-se-jboss/rpi4-op25.git
 
 Launch the `LibreOffice Calc` application by selecting the raspberry
@@ -273,4 +275,9 @@ first column and it's description in the second value. Add all
 talkgroups that you're interested in and then select `File -> Save`
 and make sure to choose `Use Text CSV Format` when prompted. Select
 `File -> Exit LibreOffice`.
+
+Copy the files to the op25 applications directory using:
+
+    cp ~/rpi4-op25/trunk.tsv ~/op25/op25/gr-op25_repeater/apps
+    cp ~/rpi4-op25/fcso.tsv ~/op25/op25/gr-op25_repeater/apps
 
