@@ -16,6 +16,7 @@ Table of Contents
   * [Configure OP25 trunk file and talkgroups](#configure-op25-trunk-file-and-talkgroups)
   * [Configure Liquidsoap with Icecast](#configure-liquidsoap-with-icecast)
   * [Install the Icecast server](#install-the-icecast-server)
+  * [Run the server](#run-the-server)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
