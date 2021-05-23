@@ -345,7 +345,23 @@ entries:
        </listen-socket>
     </icecast>
 
-Finally, set the icecast server to start at boot time:
+Set the icecast server to start at boot time:
 
     sudo systemctl enable --now icecast
+
+## Run the server
+Open three terminal windows the RPi 4. In the first window, run the command:
+
+    cd ~/rpi4-op25
+    ./op25-ice.sh
+
+In a second window, run the Liquidsoap client:
+
+    cd ~/op25/op25/gr-op25_repeater/apps
+    ./op25.liq
+
+In the third window, you can optionally monitor the log while the system runs:
+
+    cd ~/op25/op25/gr-op25_repeater/apps
+    tail -f stderr-stream0.2
 
