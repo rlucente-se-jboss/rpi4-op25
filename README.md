@@ -116,13 +116,13 @@ To poweroff, issue the command:
 
     sudo poweroff
 
-When the RPi4 is shutdown, disconnect the keyboard, mouse, and
+When the RPi 4 is shutdown, disconnect the keyboard, mouse, and
 monitor. Also, disconnect the power cable to power down the device.
 From this point on, we'll be using SSH and VNC to work with the
-RPi4.
+RPi 4.
 
 ## Install the GNU Software Defined Radio Receiver
-Power up the RPi4. At this point there is nothing connected to the
+Power up the RPi 4. At this point there is nothing connected to the
 device except for power.  Use a VNC client to connect to the RPi
 4. On OSX, open `Finder` and then select `Go -> Connect to Server
 ...`. On the dialog, enter `vnc://192.168.1.17`, making sure to
@@ -140,12 +140,20 @@ Once the software is installed, power down the device using:
     sudo poweroff
 
 ## Connect the RTL-SDR USB receiver
-TODO talk about antenna and receiver here
+Setup is very straightforward. You simply plug the USB RTL-SDR
+dongle into the RPi 4 and then you connect the antenna to the coax
+connector on the dongle. For the dipole antenna setup, I followed
+the [dipole antenna guide](https://www.rtl-sdr.com/using-our-new-dipole-antenna-kit/).
 
-TODO Power on the RPi 4 with only the USB software-defined radio connected.
+That guide suggests a certain configuration for the antenna. I
+mounted the smaller dipole telescopic antennas vertically on the
+tripod mount. Connect the coax cable to both the antenna and the
+USB dongle.
+
+Power on the RPi 4.
 
 ## Confirm the RTL-SDR USB device is recognized
-Sometimes when I boot my RPi4, the RTL-SDR receiver does not appear
+Sometimes when I boot my RPi 4, the RTL-SDR receiver does not appear
 to be enabled. You can confirm that the USB radio receiver is
 recognized by opening a terminal window and typing the following
 command:
@@ -160,7 +168,7 @@ The output should resemble the following:
     Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
 If the `Realtek` device does not appear in that list, poweroff the
-RPi4 using `sudo poweroff`, disconnect the power cable, reinsert
+RPi 4 using `sudo poweroff`, disconnect the power cable, reinsert
 the device, and then try again.
 
 ## Determine the Project 25 Parameters
@@ -271,13 +279,68 @@ choose the `fcso.tsv` file. Once again confirm that the data is tab
 separated.
 
 This file simply lists the decimal value for a talkgroup in the
-first column and it's description in the second value. Add all
-talkgroups that you're interested in and then select `File -> Save`
-and make sure to choose `Use Text CSV Format` when prompted. Select
-`File -> Exit LibreOffice`.
+first column and it's description in the second column.  An optional
+third column contains the trunk priority when simultaneous calls
+are present on the system being monitored. Default priority is 3,
+if not explicitly specified, with lower numeric values having higher
+priority. Add all talkgroups that you're interested in and then
+select `File -> Save` and make sure to choose `Use Text CSV Format`
+when prompted. Select `File -> Exit LibreOffice`.
 
-Copy the files to the op25 applications directory using:
+## Configure Liquidsoap with Icecast
+Install the packages necessary to support sending streams to an
+Icecast server.
 
-    cp ~/rpi4-op25/trunk.tsv ~/op25/op25/gr-op25_repeater/apps
-    cp ~/rpi4-op25/fcso.tsv ~/op25/op25/gr-op25_repeater/apps
+    sudo apt install liquidsoap pulseaudio pulseaudio-utils
+
+    cd ~/rpi4-op25
+
+Review the files `op25.liq` and `meta.json` and make sure to replace
+the following parameters:
+
+| Parameter | Description |
+| --- | --- |
+| YOUR-ICECAST-SERVER-ADDRESS | The hostname or IP address of your Icecast server, e.g. 192.168.1.204 |
+| YOUR-ICECAST-SERVER-ADDRESS-AND-PORT | The hostname and port of your Icecast server, e.g. 192.168.1.204:8080 |
+| YOUR-ICECAST-SERVER-MOUNTPOINT | The mountpoint on your Icecast server, e.g. /op25 |
+| YOUR-ICECAST-SERVER-PASSWORD | The password to access your Icecast server |
+| YOUR-ICECAST-SERVER-PORT | The port of your Icecast server, e.g. 8080 |
+
+# Install the Icecast server
+I installed the icecast server on a separate system from the RPi
+4. The host was running Fedora 34, so I installed Icecast using:
+
+    sudo dnf -y install icecast
+
+Next, edit the file `/etc/icecast.xml` and change the following
+entries:
+
+    <icecast>
+       <limits>
+          ...
+          <burst-on-connect>0</burst-on-connect>
+          ...
+       </limits>
+       ...
+       <authentication>
+          ...
+          <source-password>CHANGE-THIS</source-password>
+          <relay-password>CHANGE-THIS</relay-password>
+          <admin-password>CHANGE-THIS</admin-password>
+          ...
+       </authentication>
+       ...
+       <hostname>MATCH-YOUR-HOST</hostname>
+       ...
+       <listen-socket>
+          ...
+          <bind-address>MATCH-YOUR-HOST</bind-address>
+          <shoutcast-mount>MATCH-DESIRED-MOUNT</shoutcast-mount>
+          ...
+       </listen-socket>
+    </icecast>
+
+Finally, set the icecast server to start at boot time:
+
+    sudo systemctl enable --now icecast
 
