@@ -1,0 +1,9 @@
+{
+    "icecastPass": "YOUR-ICECAST-SERVER-PASSWORD",
+    "icecastMountpoint": "YOUR-ICECAST-SERVER-MOUNTPOINT",
+    "icecastServerAddress": "YOUR-ICECAST-SERVER-ADDRESS-AND-PORT",
+    "delay": "0.0", "icecastMountExt": ".m3u",
+    "meta_format_idle": "[idle]",
+    "meta_format_tgid": "[%TGID%]",
+    "meta_format_tag":  "[%TGID%] %TAG%"
+}
