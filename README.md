@@ -6,11 +6,16 @@ Table of Contents
   * [Install Raspberry Pi OS](#install-raspberry-pi-os)
   * [Configure the RPi 4](#configure-the-rpi-4)
   * [Set SSH and VNC](#set-ssh-and-vnc)
-  * [Determine the Project 25 Primary Control Frequency](#determine-the-project-25-primary-control-frequency)
-  * [Connect the RTL\-SDR USB receiver](#connect-the-rtl-sdr-usb-receiver)
   * [Install the GNU Software Defined Radio Receiver](#install-the-gnu-software-defined-radio-receiver)
+  * [Connect the RTL\-SDR USB receiver](#connect-the-rtl-sdr-usb-receiver)
   * [Confirm the RTL\-SDR USB device is recognized](#confirm-the-rtl-sdr-usb-device-is-recognized)
+  * [Determine the Project 25 Parameters](#determine-the-project-25-parameters)
   * [Confirm the control channel frequency for Project25](#confirm-the-control-channel-frequency-for-project25)
+  * [Install LibreOffice (if not already present)](#install-libreoffice-if-not-already-present)
+  * [Install the OP25 software](#install-the-op25-software)
+  * [Configure OP25 trunk file and talkgroups](#configure-op25-trunk-file-and-talkgroups)
+  * [Configure Liquidsoap with Icecast](#configure-liquidsoap-with-icecast)
+  * [Install the Icecast server](#install-the-icecast-server)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
@@ -306,7 +311,7 @@ the following parameters:
 | YOUR-ICECAST-SERVER-PASSWORD | The password to access your Icecast server |
 | YOUR-ICECAST-SERVER-PORT | The port of your Icecast server, e.g. 8080 |
 
-# Install the Icecast server
+## Install the Icecast server
 I installed the icecast server on a separate system from the RPi
 4. The host was running Fedora 34, so I installed Icecast using:
 
