@@ -38,10 +38,10 @@ input = normalize(input, gain_max = 6.0, gain_min = -6.0, target = -16.0, thresh
 # Uncomment the appropriate line below to enable local sound
 #
 # Default audio subsystem
-out (input)
+#out (input)
 #
 # PulseAudio
-output.pulseaudio(input)
+#output.pulseaudio(input)
 #
 # ALSA
 #output.alsa(input)
