@@ -1,0 +1,7 @@
+[Unit]
+Description=Archive fcso stream at bottom of the hour
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/archive-stream.sh
+

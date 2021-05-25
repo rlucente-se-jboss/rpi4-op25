@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer to archive the fcso stream at the top of the hour
+
+[Timer]
+# activates at top of the hour
+OnCalendar=hourly
+
+[Install]
+WantedBy=default.target multi-user.target

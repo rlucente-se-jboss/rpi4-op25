@@ -1,0 +1,12 @@
+[Unit]
+Description=op25-liq
+Wants=op25-rx
+After=op25-rx
+
+[Service]
+ExecStart=%h/op25/op25/gr-op25_repeater/apps/op25.liq
+RestartSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

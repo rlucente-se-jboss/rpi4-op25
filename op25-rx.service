@@ -1,0 +1,11 @@
+[Unit]
+Description=op25-rx
+
+[Service]
+ExecStart=%h/rpi4-op25/op25-rx.sh
+RestartSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

@@ -17,6 +17,7 @@ Table of Contents
   * [Configure Liquidsoap with Icecast](#configure-liquidsoap-with-icecast)
   * [Install the Icecast server](#install-the-icecast-server)
   * [Run the server](#run-the-server)
+  * [Archive the streams](#archive-the-streams)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
@@ -273,7 +274,8 @@ Enter data in row 2 according to the table below.
 | NAC | The three digit hexadecimal network access code preceded by `0x` |
 | Modulation | Set to `cqpsk` for Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK) is another name for Differential Phase Shift Keying (DQPSK) with 4 bit styles: 00, 01, 10, and 11. This [article](https://en.wikipedia.org/wiki/Phase-shift_keying) dives deeper into this encoding. An alternative is `c4fm` for Continuous 4 level FM. |
 | TGID Tags File | File name containing talkgroup identifiers. This is where the desired talkgroups are listed. |
-| Whitelist/BLacklist/Center Frequency | Leave blank for now. |
+| Whitelist | The only talkgroup identifiers you want to decode, e.g. 5402 |
+| BLacklist/Center Frequency | Leave blank for now. |
 
 Make the appropriate modifications for the desired Project25 system
 you'd like to listen to. Save the file using `File -> Save` and
@@ -351,18 +353,57 @@ Set the icecast server to start at boot time:
     sudo systemctl enable --now icecast
 
 ## Run the server
-Open three terminal windows the RPi 4. In the first window, run the command:
+The server can be set up to run automatically without user intervention.
+Make sure to review the contents of both `op25-rx.sh` and `op25.liq`
+to ensure that the options and parameters are correct for your
+setup.
 
+Two services need to be installed to launch the receiver application
+with the appropriate parameters and then the `op25.liq` application
+to send the stream to the icecast server. Type the following commands
+in a terminal window on the RPi 4:
+
+    mkdir -p ~/.config/systemd/user
     cd ~/rpi4-op25
-    ./op25-ice.sh
 
-In a second window, run the Liquidsoap client:
+    cp op25-liq.service op25-rx.service ~/.config/systemd/user
 
-    cd ~/op25/op25/gr-op25_repeater/apps
-    ./op25.liq
+    systemctl --user daemon-reload
+    systemctl --user enable --now op25-rx.service
+    systemctl --user enable --now op25-liq.service
 
-In the third window, you can optionally monitor the log while the system runs:
+    loginctl enable-linger $USER
 
-    cd ~/op25/op25/gr-op25_repeater/apps
-    tail -f stderr-stream0.2
+## Archive the streams
+The streams can be easily archived using curl with systemd timers
+and services. On the same system that you installed the icecast
+server, run the following commands:
 
+    git clone https://github.com/rlucente-se-jboss/rpi4-op25.git
+
+    cd rpi4-op25
+    mkdir -p ~/.config/systemd/user ~/bin ~/fcso
+
+    cp archive*.timer archive*.service ~/.config/systemd/user
+
+Modify the parameter `STREAM_URL` in the `archive-stream.sh` file
+to match the URL for the mountpoint on the icecast server. This
+needs to be the actual MP3 stream and not the M3U playlist file.
+Then, run the following commands:
+
+    cp archive-stream.sh ~/bin
+
+    systemctl --user daemon-reload
+
+    systemctl --user enable --now archive-stream-00.timer
+    systemctl --user enable --now archive-stream-30.timer
+
+    loginctl enable-linger $USER
+
+The two systemd timers trigger at the top and bottom of the hour.
+Since each systemd service archives thirty-one minutes of streaming
+to ensure overlap, one timer would not work as the timer will not
+retrigger if it's corresponding service is still active.
+
+
+TODO instructions on how to connect to web interface for op25, how to connect to icecast server to play streams
