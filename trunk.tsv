@@ -1,2 +1,2 @@
-"sysname"	"control_channel_list"	"offset"	"nac"	"modulation"	"tgid_tags_file"	"whitelist"	"blacklist"	"center_frequency"
-"fcso"	"854.9875"	"0"	"0x441"	"cqpsk"	"fcso.tsv"	""	""	""
+sysname	control_channel_list	offset	nac	modulation	tgid_tags_file	whitelist	blacklist	center_frequency
+fcso	854.9875	0	0x441	cqpsk	fcso.tsv	5402		
