@@ -1,10 +1,9 @@
 [Unit]
 Description=op25-liq
-Wants=op25-rx
-After=op25-rx
 
 [Service]
-ExecStart=%h/op25/op25/gr-op25_repeater/apps/op25.liq
+WorkingDirectory=%h/op25/op25/gr-op25_repeater/apps
+ExecStart=/usr/bin/liquidsoap op25.liq
 RestartSec=5
 Restart=on-failure
 
