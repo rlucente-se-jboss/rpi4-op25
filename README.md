@@ -299,8 +299,8 @@ Next, edit the `TGID Tags File` which in the example is named
 choose the `fcso.tsv` file. Once again confirm that the data is tab
 separated.
 
-This file simply lists the decimal value for a talkgroup in the
-first column and it's description in the second column.  An optional
+This file associates the decimal value for a talkgroup in the first
+column with it's description in the second column.  An optional
 third column contains the trunk priority when simultaneous calls
 are present on the system being monitored. Default priority is 3,
 if not explicitly specified, with lower numeric values having higher
@@ -309,8 +309,10 @@ select `File -> Save` and make sure to choose `Use Text CSV Format`
 when prompted. Select `File -> Exit LibreOffice`.
 
 ## Configure Liquidsoap with Icecast
-Install the packages necessary to support sending streams to an
-Icecast server.
+The OP25 receiver app provides a way to access the decoded voice
+packet streams. Liquidsoap is an icecast client that sends the
+decoded voice packets to an icecast server. Install the packages
+necessary to support sending streams to an icecast server.
 
     sudo apt install liquidsoap pulseaudio pulseaudio-utils
 
@@ -328,8 +330,13 @@ the following parameters:
 | YOUR-ICECAST-SERVER-PORT | The port of your Icecast server, e.g. 8080 |
 
 ## Install the Icecast server
-I installed the icecast server on a separate system from the RPi
-4. The host was running Fedora 34, so I installed Icecast using:
+An icecast server provides an internet radio server to listen to
+the live stream on your mobile device or laptop. I use VLC on both,
+but there are many compatible stream players to choose from. To
+make sure that I wasn't putting a load on the RPi 4 with multiple
+listening clients, I installed the icecast server on a separate
+system from the RPi 4. The host was running Fedora 34, so I installed
+Icecast using:
 
     sudo dnf -y install icecast
 
