@@ -42,5 +42,5 @@ cd ~/op25/op25/gr-op25_repeater/apps
     -w \
     -M meta.json \
     -l http:$HOSTIP:$PORT \
-    2> stderr-stream0.2
+    2> /dev/null
 
