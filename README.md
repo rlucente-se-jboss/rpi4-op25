@@ -417,5 +417,16 @@ Since each systemd service archives thirty-one minutes of streaming
 to ensure overlap, one timer would not work as the timer will not
 retrigger if it's corresponding service is still active.
 
+The last thing you may want to do when archiving files is to remove
+files that are older than a specific time. Technically, files are
+removed that have not been accessed, modified, or created within
+the specified time period. Removing older files is easily done using
+the systemd-tmpfiles-clean timer and service. Edit the file
+`clean-stream.conf` and change `YOUR-USERID` to match the actual
+user account being used to archive the streams (e.g. rlucente).
+Once the file is edited, run the following commands:
+
+    cp clean-stream.conf /etc/tmpfiles.d
+    restorecon -vFr /etc/tmpfiles.d
 
 TODO instructions on how to connect to web interface for op25, how to connect to icecast server to play streams
