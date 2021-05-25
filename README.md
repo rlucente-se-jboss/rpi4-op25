@@ -1,7 +1,9 @@
+
 Table of Contents
 =================
 
 * [Experimenting with Raspberry Pi4 and Project25](#experimenting-with-raspberry-pi4-and-project25)
+  * [Overview](#overview)
   * [Get an RPi 4](#get-an-rpi-4)
   * [Install Raspberry Pi OS](#install-raspberry-pi-os)
   * [Configure the RPi 4](#configure-the-rpi-4)
@@ -22,6 +24,16 @@ Table of Contents
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 # Experimenting with Raspberry Pi4 and Project25
+
+## Overview
+Build a public safety radio scanner for under $100 using the Raspberry
+Pi 4! This project walks though how to set up the hardware and
+software on the RPi 4 to decode Project 25 radio traffic and stream
+to an icecast server. The icecast server, running on a separate
+Linux system provides client access to the stream and archives the
+streams using systemd timers/services. You can use VLC on a laptop
+or phone to connect over WiFi to the Icecast server and listen live
+to public safety radio traffic.
 
 ## Get an RPi 4
 To make experimentation easier, I purchased a [Canakit Raspberry Pi 4 Starter Kit](https://www.canakit.com/raspberry-pi-4-starter-kit.html)
