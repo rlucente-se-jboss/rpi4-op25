@@ -280,14 +280,15 @@ Enter data in row 2 according to the table below.
 
 | Column | Description |
 | --- | --- |
-| Sysname | Assign a name to the system. The default name, `fcso`, is arbitrary and it corresponds to the Frederick, MD Sheriff's office |
-| Control Channel List | The primary control channel frequency in MHz |
-| Offset | Some sort of frequency offset, but leave this at zero |
-| NAC | The three digit hexadecimal network access code preceded by `0x` |
-| Modulation | Set to `cqpsk` for Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK) is another name for Differential Phase Shift Keying (DQPSK) with 4 bit styles: 00, 01, 10, and 11. This [article](https://en.wikipedia.org/wiki/Phase-shift_keying) dives deeper into this encoding. An alternative is `c4fm` for Continuous 4 level FM. |
-| TGID Tags File | File name containing talkgroup identifiers. This is where the desired talkgroups are listed. |
-| Whitelist | The only talkgroup identifiers you want to decode, e.g. 5402 |
-| BLacklist/Center Frequency | Leave blank for now. |
+| sysname | Assign a name to the system. The default name, `fcso`, is arbitrary and it corresponds to the Frederick, MD Sheriff's office |
+| control_channel_list | The primary control channel frequency in MHz |
+| offset | Some sort of frequency offset, but leave this at zero |
+| nac | The three digit hexadecimal network access code preceded by `0x` |
+| modulation | Set to `cqpsk` for Compatible Differential Offset Quadrature Phase Shift Keying (CQPSK) is another name for Differential Phase Shift Keying (DQPSK) with 4 bit styles: 00, 01, 10, and 11. This [article](https://en.wikipedia.org/wiki/Phase-shift_keying) dives deeper into this encoding. An alternative is `c4fm` for Continuous 4 level FM. |
+| tgid_tags_file | File name containing tags associated with talkgroup identifiers. |
+| whitelist | The only talkgroup identifiers you want to include in the stream, e.g. 5402 |
+| blacklist | Talkgroup identifiers to exclude from the stream, e.g. 5442 |
+| center_frequency | Leave blank for now. |
 
 Make the appropriate modifications for the desired Project25 system
 you'd like to listen to. Save the file using `File -> Save` and
