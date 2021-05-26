@@ -20,6 +20,8 @@ Table of Contents
   * [Install the Icecast server](#install-the-icecast-server)
   * [Run the server](#run-the-server)
   * [Archive the streams](#archive-the-streams)
+  * [OP25 web interface](#op25-web-interface)
+  * [Play Icecast streams](#play-icecast-streams)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
