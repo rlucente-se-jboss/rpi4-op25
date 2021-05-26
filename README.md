@@ -437,4 +437,32 @@ Once the file is edited, run the following commands:
     cp clean-stream.conf /etc/tmpfiles.d
     restorecon -vFr /etc/tmpfiles.d
 
-TODO instructions on how to connect to web interface for op25, how to connect to icecast server to play streams
+## OP25 web interface
+You can visualize how the OP25 receiver is working by accessing the
+web interface. Browse to the following URL for your RPi 4 (e.g.
+http://192.168.1.17:8080) and you'll see an interface similar to
+the following:
+
+![OP25 Web Interface](/images/op25-web-interface.png)
+
+If the control channel is properly tuned, you'll see voice frequencies
+being dynamically assigned to talkgroups as well as other statistics.
+You can examine the radio receiver performance by looking at the
+various plots. The constellation plot is shown below showing the
+four quadrants for CQPSK.
+
+![Constellation Plot](/images/constellation-plot.png)
+
+## Play Icecast streams
+The Icecast server has an administrative interface at port 8000.
+Browse to your icecast server (e.g. http://192.168.1.204:8000) to
+see the main interface shown below.
+
+![Icecast Web Server](/images/icecast-main.png)
+
+To play the stream, you can browse to the mount point or use a
+streaming client. Using the example above, I would browse to
+http://192.168.1.204:8000/op25 and see the following:
+
+![Icecast Stream](/images/icecast-stream.png)
+
