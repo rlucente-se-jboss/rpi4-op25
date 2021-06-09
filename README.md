@@ -8,6 +8,7 @@ Table of Contents
   * [Install Raspberry Pi OS](#install-raspberry-pi-os)
   * [Configure the RPi 4](#configure-the-rpi-4)
   * [Set SSH and VNC](#set-ssh-and-vnc)
+  * [Increase memory for USBFS buffers](#increase-memory-for-usbfs-buffers)
   * [Install the GNU Software Defined Radio Receiver](#install-the-gnu-software-defined-radio-receiver)
   * [Connect the RTL\-SDR USB receiver](#connect-the-rtl-sdr-usb-receiver)
   * [Confirm the RTL\-SDR USB device is recognized](#confirm-the-rtl-sdr-usb-device-is-recognized)
