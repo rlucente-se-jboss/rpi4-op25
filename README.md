@@ -169,10 +169,12 @@ Once the software is installed, power down the device using:
 
 ## Connect the RTL-SDR USB receiver
 Setup is very straightforward. You simply plug the USB RTL-SDR
-dongle into the RPi 4 and then you connect the antenna to the coax
-connector on the dongle. For the dipole antenna setup, I followed
-the [dipole antenna guide](https://www.rtl-sdr.com/using-our-new-dipole-antenna-kit/).
+dongle into the RPi 4. I made sure to use the USB 2.0 ports as there
+seemed to be failures with the libusb driver and the USB 3.0 ports
+that I wasn't able to isolate.
 
+Then you connect the antenna to the coax connector on the dongle.
+For the dipole antenna setup, I followed the [dipole antenna guide](https://www.rtl-sdr.com/using-our-new-dipole-antenna-kit/).
 That guide suggests a certain configuration for the antenna. I
 mounted the smaller dipole telescopic antennas vertically on the
 tripod mount. Connect the coax cable to both the antenna and the
