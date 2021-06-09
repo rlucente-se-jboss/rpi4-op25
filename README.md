@@ -133,6 +133,13 @@ device:
 
     ip route get 8.8.8.8 | awk '{print $7}'
 
+## Increase memory for USBFS buffers
+Modify the maximum memory allowed for usbfs buffers. Setting this
+to zero means unlimited. Edit the file `/etc/rc.local` and add the
+following line before the last line `exit 0`:
+
+    sh -c 'echo 0 > /sys/module/usbcore/parameters/usbfs_memory_mb' &
+
 To poweroff, issue the command:
 
     sudo poweroff
